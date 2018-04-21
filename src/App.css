@@ -1,1 +1,95 @@
-.App {}
+.app {
+    display: flex;
+    font-size: 14px;
+    height: 100%;
+}
+
+.dnd-init {
+    align-items: center;
+    color: grey;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+}
+
+.image-panel {
+    background: white;
+    height: 100%;
+    display: flex;
+    width: 60%;
+    margin: 0 10px;
+    box-shadow: 0 0 5px 5px #bbbbbb;
+}
+
+.color-panel {
+    background: white;
+    box-shadow: 0 0 5px 5px #bbbbbb;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0 10px;
+    width: 40%;
+}
+
+.dnd-init .drop-text {
+    font-size: 30px;
+    color: #cccccc;
+}
+
+.dnd-init .link {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}
+
+.partial-preview {
+    display: flex;
+    padding: 5px;
+}
+
+.partial-preview .preview {
+    border: 1px solid #dddddd;
+    width: 100px;
+    height: 100px;
+}
+
+.partial-preview .colors {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 3px;
+}
+
+.partial-preview .colors .row {
+    padding: 2px;
+    display: flex;
+}
+
+.partial-preview .colors .row .label {
+    display: inline-block;
+    width: 40px;
+}
+
+.partial-preview .colors .row input {
+    display: flex;
+    flex-grow: 1;
+}
+
+.chose-colors {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.chose-colors .row {
+    display: flex;
+    padding: 3px 0;
+}
+
+.chose-colors .color {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #dddddd;
+}
