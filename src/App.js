@@ -1,36 +1,28 @@
 import React, { Component } from 'react';
-import styles from './App.css';
-import ImageCanvas from './components/ImageCanvas';
+import './App.css';
+import ImagePanel from './components/ImagePanel';
 import RightPanel from './components/RightPanel';
 
 class App extends Component {
     render() {
         return (
             <div className="app">
-                <ImageCanvas />
+                <ImagePanel />
                 <RightPanel />
-                <div className="image-panel">
-                    <ChooseFile />
-                </div>
                 <ColorPanel />
             </div>
         );
     }
 }
 
-function ChooseFile() {
-    return (
-        <div className="dnd-init">
-            <span className="drop-text">Drop image here</span><span>Or</span><a className="link">choose a image</a>
-        </div >
-    );
-}
 
 function ColorPanel() {
-    return <div className="color-panel">
-        <PartialPreview />
-        <ChoseColors />
-    </div >;
+    return (
+        <div className="color-panel">
+            <PartialPreview />
+            <ChoseColors />
+        </div >
+    );
 }
 
 function PartialPreview() {
@@ -58,9 +50,10 @@ function ChoseColors() {
         <div class="row">
             <div className="color"></div>
             <div className="colors">
-                <div>Hex: <input type="text" value="#FFFFFF" /></div>
-                <div>rgb: <input type="text" value="rgb(255, 255, 255)" /></div>
-                <div>rgba: <input type="text" value="rgba(255, 255, 255, 255)" /></div>
+                <div className="row">Hex: <input type="text" value="#FFFFFF" /></div>
+                <div className="row">rgb: <input type="text" value="rgb(255, 255, 255)" /></div>
+
+                <div className="row">rgba: <input type="text" value="rgba(255, 255, 255, 255)" /></div>
             </div>
         </div>
     </div>;
