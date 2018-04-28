@@ -50,7 +50,7 @@ export class PreviewCanvas extends React.Component {
         let ctx = this.canvas.getContext('2d');
         let p = ctx.getImageData(x, y, 1, 1).data;
 
-        this.props.setMousePosition(x/this.canvas.width, y/this.canvas.height);
+        this.props.setMousePosition(x / this.canvas.width, y / this.canvas.height);
 
         let hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
 
@@ -72,20 +72,21 @@ export class PreviewCanvas extends React.Component {
     }
 
     render() {
-        return (
-            <canvas
-                className="preview-canvas"
-                onMouseEnter={this.onMouseMove}
-                onMouseMove={this.onMouseMove}
-                ref={(ref) => {
-                    if (ref) {
-                        ref.width = ref.clientWidth;
-                        ref.height = ref.clientHeight;
-                    }
+        return [this.props.image];
+        // return (
+        //     <canvas
+        //         className="preview-canvas"
+        //         onMouseEnter={this.onMouseMove}
+        //         onMouseMove={this.onMouseMove}
+        //         ref={(ref) => {
+        //             if (ref) {
+        //                 ref.width = ref.clientWidth;
+        //                 ref.height = ref.clientHeight;
+        //             }
 
-                    this.canvas = ref;
-                }} />
-        );
+        //             this.canvas = ref;
+        //         }} />
+        // );
     }
 }
 
