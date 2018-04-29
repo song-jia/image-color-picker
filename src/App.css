@@ -66,26 +66,28 @@
     height: 152px;
 }
 
-.partial-preview .colors {
+.color-viewer {
+    width: 100%;
+    display: flex;
+    padding: 5px;
+}
+
+.color-viewer .color-preview {
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+}
+
+.color-viewer .colors {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    padding: 3px;
+    padding-left: 5px;
 }
 
-.partial-preview .colors .row {
+.color-viewer .colors .row {
     padding: 2px;
     display: flex;
-}
-
-.partial-preview .colors .row .label {
-    display: inline-block;
-    width: 40px;
-}
-
-.partial-preview .colors .row input {
-    display: flex;
-    flex-grow: 1;
 }
 
 .chose-colors {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import ColorViewer from './ColorViewer';
 
 const previewWidth = 150;
 const previewHeight = 150;
@@ -41,11 +42,7 @@ class PartialPreview extends React.Component {
                 <div className="preview">
                     <canvas width={previewWidth} height={previewHeight} ref={(canvas) => this.canvas = canvas} />
                 </div>
-                <div className="colors">
-                    <div className="row"><span className="label">Hex:</span><input type="text" value="#FFFFFF" /></div>
-                    <div className="row"><span className="label">rgb:</span><input type="text" value="rgb(255, 255, 255)" /></div>
-                    <div className="row"><span className="label">rgba:</span><input type="text" value="rgba(255, 255, 255, 255)" /></div>
-                </div>
+                <ColorViewer color={this.props.color} />
             </div>
         );
     }
@@ -53,12 +50,14 @@ class PartialPreview extends React.Component {
 
 PartialPreview.propTypes = {
     imageCanvas: PropTypes.object,
-    position: PropTypes.object
+    position: PropTypes.object,
+    color: PropTypes.color
 };
 
 const mapStateToProps = (state) => ({
     imageCanvas: state.imageCanvas,
-    position: state.position
+    position: state.position,
+    color: state.pointerColor
 });
 
 export default connect(mapStateToProps)(PartialPreview);
