@@ -22,12 +22,22 @@ class PartialPreview extends React.Component {
         const x = this.props.position.x * this.image.width;
         const y = this.props.position.y * this.image.height;
 
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, previewWidth, previewHeight);
+
         ctx.drawImage(
             this.image,
             x - 25, y - 25, previewWidth / zoom, previewHeight / zoom,
             0, 0, previewWidth, previewHeight);
-        ctx.fillStyle = 'red';
-        ctx.fillRect(73, 73, 4, 4);
+
+        drawCenterDot(ctx, previewWidth / 2, previewHeight / 2);
+
+        function drawCenterDot(ctx, x, y) {
+            ctx.beginPath();
+            ctx.arc(x, y, 2, 0, 2 * Math.PI);
+            ctx.fillStyle = 'red';
+            ctx.fill();
+        }
     }
 
     render() {
