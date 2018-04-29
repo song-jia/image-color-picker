@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import DropZone from 'react-dropzone';
 import PreviewCanvas from './PreviewCanvas';
 import PropTypes from 'prop-types';
-import { setImageSrc } from '../model/action';
+import { setImage } from '../model/action';
 
 class ImagePanel extends Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class ImagePanel extends Component {
 
     onDrop(acceptFiles) {
         if (acceptFiles.length > 0) {
-            this.props.setImageSrc(acceptFiles[0].preview);
+            this.props.setImage(acceptFiles[0].preview);
         }
     }
 
@@ -53,7 +53,7 @@ function ChooseFile({ onClick }) {
 
 ImagePanel.propTypes = {
     imageSrc: PropTypes.string,
-    loadImage: PropTypes.func
+    setImage: PropTypes.func
 }
 
 const mapStateToProps = (state) => ({
@@ -61,8 +61,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setImageSrc: imageSrc => {
-        dispatch(setImageSrc(imageSrc));
+    setImage: imageSrc => {
+        dispatch(setImage(imageSrc));
     }
 });
 

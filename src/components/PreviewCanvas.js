@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setMousePosition } from '../model/action';
+import { setMouseInfo } from '../model/action';
 
 export class PreviewCanvas extends React.Component {
     constructor(props) {
@@ -40,12 +40,8 @@ export class PreviewCanvas extends React.Component {
         let pos = findPos(img);
         let x = e.pageX - pos.x;
         let y = e.pageY - pos.y;
-        // let ctx = this.canvas.getContext('2d');
-        // let p = ctx.getImageData(x, y, 1, 1).data;
-        console.log(x, y);
-        this.props.setMousePosition(x / img.width, y / img.height);
 
-        // let hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
+        this.props.setMouseInfo(x / img.width, y / img.height);
 
         function findPos(obj) {
             let curleft = 0, curtop = 0;
@@ -57,10 +53,6 @@ export class PreviewCanvas extends React.Component {
                 return { x: curleft, y: curtop };
             }
             return undefined;
-        }
-
-        function rgbToHex(r, g, b) {
-            return ((r << 16) | (g << 8) | b).toString(16);
         }
     }
 
@@ -77,7 +69,8 @@ export class PreviewCanvas extends React.Component {
 }
 
 PreviewCanvas.propTypes = {
-    imageSrc: PropTypes.string
+    imageSrc: PropTypes.string,
+    setMouseInfo: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -86,8 +79,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setMousePosition: (x, y) => {
-            dispatch(setMousePosition(x, y));
+        setMouseInfo: (x, y) => {
+            dispatch(setMouseInfo(x, y));
         }
     }
 };
