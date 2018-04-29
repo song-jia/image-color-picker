@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setMouseInfo } from '../model/action';
+import { setMouseInfo, saveCurrentColor } from '../model/action';
 
 export class PreviewCanvas extends React.Component {
     constructor(props) {
         super(props);
         this.canvas = null;
         this.onMouseMove = this.onMouseMove.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
 
     drawImage() {
@@ -49,11 +50,16 @@ export class PreviewCanvas extends React.Component {
                 do {
                     curleft += obj.offsetLeft;
                     curtop += obj.offsetTop;
-                } while (obj = obj.offsetParent);
+                    obj = obj.offsetParent;
+                } while (obj);
                 return { x: curleft, y: curtop };
             }
             return undefined;
         }
+    }
+
+    onClick(e) {
+        this.props.saveCurrentColor();
     }
 
     render() {
@@ -63,6 +69,7 @@ export class PreviewCanvas extends React.Component {
                 src={this.props.imageSrc}
                 onMouseEnter={this.onMouseMove}
                 onMouseMove={this.onMouseMove}
+                onClick={this.onClick}
             />
         );
     }
@@ -70,7 +77,8 @@ export class PreviewCanvas extends React.Component {
 
 PreviewCanvas.propTypes = {
     imageSrc: PropTypes.string,
-    setMouseInfo: PropTypes.func
+    setMouseInfo: PropTypes.func,
+    saveCurrentColor: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -81,6 +89,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setMouseInfo: (x, y) => {
             dispatch(setMouseInfo(x, y));
+        },
+        saveCurrentColor: () => {
+            dispatch(saveCurrentColor());
         }
     }
 };

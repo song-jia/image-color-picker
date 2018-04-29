@@ -2,6 +2,7 @@ export const SET_IMAGE_SRC = 'SET_IMAGE_SRC';
 export const SET_IMAGE_CANVAS = 'SET_IMAGE_CANVAS';
 export const SET_POINTER_POSITION = 'SET_MOUSE_POSITION';
 export const SET_POINTER_COLOR = 'SET_POINTER_COLOR';
+export const SAVE_CURRENT_COLOR = 'SAVE_CURRENT_COLOR';
 
 export function setImageSrc(src) {
     return {
@@ -91,5 +92,11 @@ export function setPointerColor(color) {
     return {
         type: SET_POINTER_COLOR,
         color
+    }
+}
+
+export function saveCurrentColor() {
+    return {
+        type: SAVE_CURRENT_COLOR
     }
 }

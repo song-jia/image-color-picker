@@ -33,11 +33,10 @@
 .color-panel {
     background: white;
     box-shadow: 0 0 5px 5px #bbbbbb;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
     margin: 0 10px;
     width: 40%;
+    height: 100%;
+    padding-top: 155px;
 }
 
 .dnd-init {
@@ -58,6 +57,8 @@
 .partial-preview {
     display: flex;
     padding: 5px;
+    position: fixed;
+    top: 0;
 }
 
 .partial-preview .preview {
@@ -76,24 +77,21 @@
     width: 20px;
     height: 20px;
     margin-top: 5px;
+    border: 1px solid grey;
 }
 
 .color-viewer .colors {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
     padding-left: 5px;
 }
 
 .color-viewer .colors .row {
     padding: 2px;
-    display: flex;
 }
 
 .chose-colors {
-    display: flex;
-    flex-direction: column;
     padding: 5px;
+    height: 100%;
+    overflow: scroll;
 }
 
 .chose-colors .colors{
@@ -104,7 +102,6 @@
 }
 
 .chose-colors .row {
-    display: flex;
     padding: 3px 0;
 }
 

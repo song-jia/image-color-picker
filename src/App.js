@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import ImagePanel from './components/ImagePanel';
-import RightPanel from './components/RightPanel';
 import ColorPanel from './components/ColorPanel';
 
 class App extends Component {
@@ -18,7 +17,6 @@ class App extends Component {
         return (
             <div className="app">
                 <ImagePanel />
-                <RightPanel />
                 <ColorPanel />
             </div>
         );

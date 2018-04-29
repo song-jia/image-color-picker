@@ -1,10 +1,11 @@
-import { SET_POINTER_POSITION, SET_IMAGE_SRC, SET_IMAGE_CANVAS, SET_POINTER_COLOR } from './action';
+import { SET_POINTER_POSITION, SET_IMAGE_SRC, SET_IMAGE_CANVAS, SET_POINTER_COLOR, SAVE_CURRENT_COLOR } from './action';
 
 const initState = {
     imageSrc: '',
     imageCanvas: null,
     position: null,
-    pointerColor: null
+    pointerColor: null,
+    choseColors: []
 };
 
 export default function (state = initState, action) {
@@ -17,6 +18,8 @@ export default function (state = initState, action) {
             return { ...state, imageCanvas: action.canvas };
         case SET_POINTER_COLOR:
             return { ...state, pointerColor: action.color };
+        case SAVE_CURRENT_COLOR:
+            return { ...state, choseColors: [{ ...state.pointerColor }, ...state.choseColors] }
         default:
             return state;
     }
