@@ -7,12 +7,27 @@ const previewHeight = 150;
 const zoom = 3;
 
 class PartialPreview extends React.Component {
+    image = new Image();
+
+    componentDidMount() {
+        this.image.src = this.props.imageSrc;
+    }
+
+    componentDidUpdate() {
+        this.image.src = this.props.imageSrc;
+    }
 
     drawImage() {
         const ctx = this.canvas.getContext('2d');
-        ctx.drawImage(this.props.image,
-            this.props.position.x * this.props.image.width - 25, this.props.position.y * this.props.image.height + 25, previewWidth / zoom, previewHeight / zoom,
+        const x = this.props.position.x * this.image.width;
+        const y = this.props.position.y * this.image.height;
+
+        ctx.drawImage(
+            this.image,
+            x - 25, y - 25, previewWidth / zoom, previewHeight / zoom,
             0, 0, previewWidth, previewHeight);
+        ctx.fillStyle = 'red';
+        ctx.fillRect(73, 73, 4, 4);
     }
 
     render() {
@@ -36,12 +51,12 @@ class PartialPreview extends React.Component {
 }
 
 PartialPreview.propTypes = {
-    image: PropTypes.object,
+    imageSrc: PropTypes.string,
     position: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
-    image: state.image,
+    imageSrc: state.imageSrc,
     position: state.position
 });
 

@@ -10,14 +10,6 @@ export class PreviewCanvas extends React.Component {
         this.onMouseMove = this.onMouseMove.bind(this);
     }
 
-    componentDidMount() {
-        this.drawImage();
-    }
-
-    componentDidUpdate() {
-        this.drawImage();
-    }
-
     drawImage() {
         const ctx = this.canvas.getContext('2d');
         ctx.drawImage(this.props.image, ...centerImage(this.canvas, this.props.image));
@@ -44,15 +36,16 @@ export class PreviewCanvas extends React.Component {
     }
 
     onMouseMove(e) {
-        let pos = findPos(this.canvas);
+        const img = e.target;
+        let pos = findPos(img);
         let x = e.pageX - pos.x;
         let y = e.pageY - pos.y;
-        let ctx = this.canvas.getContext('2d');
-        let p = ctx.getImageData(x, y, 1, 1).data;
+        // let ctx = this.canvas.getContext('2d');
+        // let p = ctx.getImageData(x, y, 1, 1).data;
+        console.log(x, y);
+        this.props.setMousePosition(x / img.width, y / img.height);
 
-        this.props.setMousePosition(x / this.canvas.width, y / this.canvas.height);
-
-        let hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
+        // let hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
 
         function findPos(obj) {
             let curleft = 0, curtop = 0;
@@ -72,30 +65,23 @@ export class PreviewCanvas extends React.Component {
     }
 
     render() {
-        return [this.props.image];
-        // return (
-        //     <canvas
-        //         className="preview-canvas"
-        //         onMouseEnter={this.onMouseMove}
-        //         onMouseMove={this.onMouseMove}
-        //         ref={(ref) => {
-        //             if (ref) {
-        //                 ref.width = ref.clientWidth;
-        //                 ref.height = ref.clientHeight;
-        //             }
-
-        //             this.canvas = ref;
-        //         }} />
-        // );
+        return (
+            <img
+                alt=''
+                src={this.props.imageSrc}
+                onMouseEnter={this.onMouseMove}
+                onMouseMove={this.onMouseMove}
+            />
+        );
     }
 }
 
 PreviewCanvas.propTypes = {
-    image: PropTypes.object
+    imageSrc: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
-    image: state.image
+    imageSrc: state.imageSrc
 });
 
 const mapDispatchToProps = (dispatch) => {
